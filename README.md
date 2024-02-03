@@ -144,3 +144,5 @@ GitHub地址：[https://github.com/aitangbao/springboot-manager](https://github.
 ### 交流群
 > 如果大家有疑难杂症，技术交流， 可以加我拉你们进群, 务必备注: 开源
 ![输入图片说明](https://raw.githubusercontent.com/aitangbao/images/master/3.jpg)
+> 
+> 测试mac pro 提交代码
