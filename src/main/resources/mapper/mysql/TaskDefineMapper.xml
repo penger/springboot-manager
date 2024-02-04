@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.company.project.mapper.TaskDefineMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.company.project.entity.TaskDefineEntity" id="taskDefineMap">
+        <result property="id" column="id"/>
+        <result property="taskName" column="task_name"/>
+        <result property="taskDesc" column="task_desc"/>
+        <result property="taskParam" column="task_param"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+
+</mapper>
