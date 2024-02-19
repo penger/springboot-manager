@@ -1,7 +1,6 @@
 package com.company.project.service.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.company.project.service.SparkService;
 import com.company.project.vo.resp.SparkSessionPageVO;
 import okhttp3.*;
@@ -74,5 +73,37 @@ public class SparkServiceImpl implements SparkService {
     @Override
     public String getSubmittedSparkCodeResult(String sessionCode, String returnCode) {
         return null;
+    }
+
+    @Override
+    public String createSession() {
+        String getSessionListUrl = LIVY_URL+"/sessions";
+        OkHttpClient client = new OkHttpClient();
+        try {
+            MediaType mediaType = MediaType.parse("application/json");
+            Map<String,String> map = new HashMap<>();
+            map.put("kind", "spark" );
+            RequestBody requestBody = RequestBody.create(mediaType, JSON.toJSONString(map));
+            Response response = client.newCall(new Request.Builder().url(getSessionListUrl).post(requestBody).build()).execute();
+            Map resMap = JSON.parseObject(response.body().string(), Map.class);
+            System.out.println(resMap.get("id"));
+            return resMap.toString();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public Boolean deleteSession(String sessionId) {
+        String deleteSessionUrl = LIVY_URL+"/sessions/"+sessionId;
+        OkHttpClient client = new OkHttpClient();
+        try {
+            Response response = client.newCall(new Request.Builder().url(deleteSessionUrl).delete().build()).execute();
+            String body = response.body().string();
+            System.out.println(body);
+            return true;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

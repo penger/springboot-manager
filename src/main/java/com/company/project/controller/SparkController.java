@@ -51,11 +51,26 @@ public class SparkController {
         return  DataResult.success(sessionPageVO);
     }
 
+    @GetMapping("/spark/createSession")
+    @ResponseBody
+    public DataResult createSession() {
+        String result = sparkService.createSession();
+        return  DataResult.success(result);
+    }
+
+    @GetMapping("/spark/deleteSession")
+    @ResponseBody
+    public DataResult deletesion(@RequestParam("id") String id) {
+        Boolean isDeleted = sparkService.deleteSession(id);
+        return  DataResult.success(isDeleted);
+    }
+
+
     @PostMapping("/spark/submit")
     @ResponseBody
     public DataResult submitTask(@RequestBody SparkSQLSubmitReqVO vo){
-//        String result = sparkService.submitSparkSync(vo.getSessionID(), vo.getCode());
-        return DataResult.success("result");
+        String result = sparkService.submitSparkSync(vo.getSessionID(), vo.getCode());
+        return DataResult.success(result);
     }
 
 

@@ -20,5 +20,8 @@ public interface SparkService {
     String getSubmittedSparkCodeResult(String sessionCode, String returnCode);
 
 
+    String createSession();
+
+    Boolean deleteSession(String sessionId);
 }
 

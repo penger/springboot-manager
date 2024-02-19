@@ -12,6 +12,10 @@
     <table class="layui-table" id="showTable" lay-filter="showTable"></table>
 </div>
 
+<div class="layui-btn-container">
+    <button id="createSession" type="button" class="layui-btn layui-btn-normal">创建一个sparkSession</button>
+</div>
+
 <div class="layui-card-body">
     <form class="layui-form " action="" lay-filter="from1" style="width: 700px;margin-top: 10px">
         <input name="id" hidden/>
@@ -39,6 +43,16 @@
             </div>
         </div>
     </form>
+
+    <script type="text/html" id="toolbar">
+        <a class="layui-btn layui-btn-danger" lay-event="del">新增</a>
+        <a class="layui-btn layui-btn-danger" lay-event="del">删除</a>
+    </script>
+
+    <script type="text/html" id="sessionToDelete">
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    </script>
+
 </div>
 
 
@@ -83,10 +97,28 @@
                     {field: 'kind', title: '类型', sort: true},
                     {field: 'state', title: '状态', sort: true},
                     {field: 'appInfo', title: '信息', sort: true},
-                    {field: 'log', title: '日志', sort: true}
+                    {field: 'log', title: '日志', sort: true},
+                    {toolbar:'#sessionToDelete',title:'操作'}
+
                 ]
             ]
+            ,toolbar :'#toolbar'
         });
+
+        table.on('tool(showTable)',function (obj){
+            debugger
+            var data = obj.data
+            console.log(data)
+            switch (obj.event){
+                case 'del':
+                    CoreUtil.sendGet(ctx+"spark/deleteSession?id="+data.id,function (res){
+                        console.log("------删除了这个session")
+                    })
+            }
+        })
+
+
+
         //点击提交代码到spark集群
         form.on('submit(submit)',function (data){
             event.preventDefault();
@@ -96,6 +128,14 @@
                 $('#result').html(res.data);
             })
         })
+
+        $('#createSession').on('click', function () {
+            CoreUtil.sendGet(ctx+"spark/createSession",null,function (res){
+                console.log(res);
+            })
+        })
+
+
     })
 </script>
 </html>
