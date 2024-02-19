@@ -48,6 +48,10 @@ public class TaskDefineEntity extends BaseEntity implements Serializable {
 	@TableField("task_param")
 	private String taskParam;
 
+
+	@TableField("task_type")
+	private String taskType;
+
 	/**
 	 * 创建时间
 	 */

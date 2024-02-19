@@ -11,16 +11,16 @@ spring:
           password: happy2021
           driver-class-name: com.mysql.cj.jdbc.Driver
           url: jdbc:mysql://tx:3306/company_project?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=GMT%2b8
-        oracle:
-          username: root
-          password: 123456
-          driver-class-name: oracle.jdbc.driver.OracleDriver
-          url: jdbc:oracle:thin:@localhost:1521/company_project
-        sqlServer:
-          username: sa
-          password: 123456
-          driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-          url: jdbc:sqlserver://localhost:1433;databaseName=company_project
+#        oracle:
+#          username: root
+#          password: 123456
+#          driver-class-name: oracle.jdbc.driver.OracleDriver
+#          url: jdbc:oracle:thin:@localhost:1521/company_project
+#        sqlServer:
+#          username: sa
+#          password: 123456
+#          driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+#          url: jdbc:sqlserver://localhost:1433;databaseName=company_project
   redis:
     host: tx # Redis服务器地址
     database: 0 # Redis数据库索引（默认为0）
@@ -39,7 +39,7 @@ spring:
 
 file:
   #文件上传目录 绝对路径 末尾请加 /
-  path: F:/files/ #windows
+  path: E:/data/ #windows
   #path: /data/files/ #linux
   #文件预览、下载的url, 末尾请勿加 /
   url: http://localhost:8080/files

@@ -63,8 +63,7 @@
 <script type="text/html" id="toolbar">
     <div class="layui-btn-container">
         <button class="layui-btn layui-btn-sm" lay-event="add" shiro:hasPermission="sysContent:add">添加</button>
-        <button class="layui-btn layui-btn-sm" lay-event="batchDeleted" shiro:hasPermission="sysContent:delete">删除
-        </button>
+        <button class="layui-btn layui-btn-sm" lay-event="batchDeleted" shiro:hasPermission="sysContent:delete">删除</button>
     </div>
 </script>
 <script type="text/html" id="tool">
@@ -256,6 +255,8 @@
 
     //执行查询
     function search() {
+
+
         //这里以搜索为例
         tableIns1.reload({
             where: { //设定异步数据接口的额外参数，任意设

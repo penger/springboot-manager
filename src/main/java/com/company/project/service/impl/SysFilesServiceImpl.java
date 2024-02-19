@@ -63,6 +63,7 @@ public class SysFilesServiceImpl extends ServiceImpl<SysFilesMapper, SysFilesEnt
             resultMap.put("src", url);
             return DataResult.success(resultMap);
         } catch (Exception e) {
+            e.printStackTrace();
             throw new BusinessException("上传文件失败");
         }
     }

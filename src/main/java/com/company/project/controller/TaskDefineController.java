@@ -1,6 +1,7 @@
 package com.company.project.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,6 +77,9 @@ public class TaskDefineController {
         Page page = new Page(taskDefine.getPage(), taskDefine.getLimit());
         LambdaQueryWrapper<TaskDefineEntity> queryWrapper = Wrappers.lambdaQuery();
         //查询条件示例
+        if(StringUtils.isNotBlank(taskDefine.getTaskName())){
+            queryWrapper.like(TaskDefineEntity::getTaskName ,taskDefine.getTaskName());
+        }
         //queryWrapper.eq(TaskDefineEntity::getId, taskDefine.getId());
         IPage<TaskDefineEntity> iPage = taskDefineService.page(page, queryWrapper);
         return DataResult.success(iPage);

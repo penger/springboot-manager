@@ -4,30 +4,35 @@ var CoreUtil = (function () {
 
     /*GET*/
     coreUtil.sendGet = function(url, params, ft){
-        this.sendAJAX(url, params, ft, "GET")
+        this.sendAJAX(url, params, ft, "GET",true)
     }
 
     /*POST*/
     coreUtil.sendPost = function(url, params, ft){
-        this.sendAJAX(url, JSON.stringify(params), ft, "POST")
+        this.sendAJAX(url, JSON.stringify(params), ft, "POST",true)
     }
+
+    coreUtil.sendPostSync = function(url, params, ft){
+        this.sendAJAX(url, JSON.stringify(params), ft, "POST",false)
+    }
+
     /*PUT*/
     coreUtil.sendPut = function(url, params, ft){
-        this.sendAJAX(url, JSON.stringify(params), ft, "PUT")
+        this.sendAJAX(url, JSON.stringify(params), ft, "PUT",true)
     }
     /*DELETE*/
     coreUtil.sendDelete = function(url, params, ft){
-        this.sendAJAX(url, JSON.stringify(params), ft, "DELETE")
+        this.sendAJAX(url, JSON.stringify(params), ft, "DELETE",true)
     }
 
 
     /*ajax*/
-    coreUtil.sendAJAX = function(url, params, ft, method){
+    coreUtil.sendAJAX = function(url, params, ft, method,isAsync){
         var loadIndex = top.layer.load(0, {shade: false});
         $.ajax({
             url: url,
             cache: false,
-            async: true,
+            async: isAsync,
             data: params,
             type: method,
             contentType: 'application/json; charset=UTF-8',
@@ -87,6 +92,7 @@ var CoreUtil = (function () {
 
     //字典数据回显
     coreUtil.selectDictLabel = function (datas, value) {
+        debugger
         datas = JSON.parse(datas);
         var label = "";
         $.each(datas, function(index, dict) {
@@ -101,7 +107,5 @@ var CoreUtil = (function () {
         }
         return label;
     }
-
-
     return coreUtil;
 })(CoreUtil, window);
